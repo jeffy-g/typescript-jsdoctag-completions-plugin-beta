@@ -7,7 +7,7 @@
     "typescript",
     "javascript",
     "jsdoc",
-    "jsdoc tag",
+    "jsdoc-tag",
     "plugin",
     "tsserver",
     "language"
@@ -15,6 +15,12 @@
   "directories": {
     "lib": "lib"
   },
+  "files": [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:jeffy-g/typescript-jsdoctag-completions-plugin-beta.git"
