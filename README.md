@@ -47,7 +47,7 @@ then launch vscode, etc
 
   * external defined preset
 
-    + To create your own preset, implement `TJSDocTagPresetRaw` as defined in `plugin-api.d.ts`
+    + To create your own preset, implement `TJSDocTagPresetRaw` as defined in `preset-api.d.ts`
 
 
 > ## `Locale` priority
@@ -59,3 +59,9 @@ then launch vscode, etc
       * #1-2 vscode setting (WIP?: vscode extension)
 
     * #2 OS native
+
+
+
+> ### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
