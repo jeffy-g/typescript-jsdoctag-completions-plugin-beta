@@ -6,6 +6,18 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 import * as ts from "typescript/lib/tsserverlibrary";
+declare global {
+    /**
+     * Remove readonly
+     */
+    type Writable<T> = {
+        -readonly [P in keyof T]: T[P];
+    };
+    /**
+     * pick properties by exclude list
+     */
+    type ExcludePick<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+}
 /**
  * locale syntax conforms to the typescript locale tokens
  * 
@@ -64,30 +76,49 @@ type TJSDocTagPresetEntry = {
      * @default "en"
      */
     document(locale?: TPresetLocaleTokens): string | undefined;
-}
+};
 /**
+ * ### About `marker`, `simple`, `complexity` property
+ * 
+ *   + `marker` - As the name implies
+ * 
+ *   + `simple` - A jsdoc tag that only allows `descriptions` (and inline tag
+ *
+ *     * Cannot contain type annotations
+ * 
+ *   + `complexity` - A jsdoc tag that allows `type annotations` and "descriptions"
+ * 
+ * 
+ * @todo Some tags don't apply to above. e.g - &#64;access public
+ * 
+ * 
+ * #### The values of these properties are used as the list data for the regex
+ * 
+ *   + For regex fragments
+ * 
+ *   ```js
+ *   // e.g
+ *   "see|deprecated|classdesc|copyright|todo|fileoverview|summary|file|desc(?:ription)?|overview"
+ *   ```
+ * 
+ *   + If simply defined as `string[]`, the result of `array.join("|")` will be used as the regex.
+ * 
  * @date 2020/8/30
  * @version 2.0 remove generics
  */
-type TJSDocTagPresetRaw = {
+type TJSDocTagRawPreset = {
     /**
      * provide marker tags
      */
-    marker: string | string[];
+    readonly marker: string | string[];
     /**
      * provide simple tags
      */
-    simple: string | string[];
+    readonly simple: string | string[];
     /**
      * provide complexity tags
      */
-    complexity: string | string[];
-    /**
-     * acquire available jsdoc tag names
-     * 
-     * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
-     */
-    tagNames(isBlock?: true): string[];
+    readonly complexity: string | string[];
     /**
      * Returns the string if there is information, or an empty string otherwise
      * 
@@ -96,13 +127,36 @@ type TJSDocTagPresetRaw = {
      * @date 2020/9/5
      */
     getExtraInfo(tagName: string, isBlock?: true): string;
+    /**
+     * ### Provides jsdoc tag name data, which is the cornerstone of preset.
+     * 
+     * tag name data syntax:
+     * 
+     * ```js
+     * // block type
+     * const blockNames = [
+     *     "function:func,method",
+     *     "<base name>[:<synonym>[,<synonym>]]",
+     *     // ...
+     * ];
+     * ```
+     * 
+     * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
+     */
+    provideTagData(isBlock?: true): string[];
 };
 /**
  * @interface
  * @date 2020/8/30
  * @version 1.0
  */
-interface IJSDocTagPresetProvider extends TJSDocTagPresetRaw {
+interface IJSDocTagPresetProvider extends ExcludePick<TJSDocTagRawPreset, "provideTagData"> {
+    /**
+     * acquire available jsdoc tag names
+     * 
+     * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
+     */
+    tagNames(isBlock?: true): ReadonlyArray<string>;
     /**
      * acquire available jsdoc tag preset entries
      * 
@@ -128,6 +182,6 @@ interface IJSDocTagPresetFactory {
  * @date 2020/9/11
  */
 interface IPresetFactoryComposer {
-    (presetRaw: TJSDocTagPresetRaw, translations: TTranslationsMap, syntaxes: TSyntaxMap): IJSDocTagPresetFactory;
+    (rawPreset: TJSDocTagRawPreset, translations: TTranslationsMap, syntaxes: TSyntaxMap): IJSDocTagPresetFactory;
 }
 export as namespace JSDocTagPresetAPI;
