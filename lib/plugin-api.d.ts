@@ -12,6 +12,22 @@ import * as ts from "typescript/lib/tsserverlibrary";
  */
 type TJSDocTagCompletionsPluginConfig = {
     /**
+     * This means the plugin config is the value defined on workspace settings in vscode.
+     * 
+     * CAUTION: This value must not be set when config defined in tsconfig.json@compilerOptions/plugins!
+     * 
+     * @date 2020/10/16
+     */
+    global?: true;
+    /**
+     * This means the plugin config is the value defined on workspace settings in vscode.
+     * 
+     * CAUTION: This value must not be set when config defined in tsconfig.json@compilerOptions/plugins!
+     * 
+     * @date 2020/9/5
+     */
+    vscode?: true;
+    /**
      * Specify the jsdoc tag preset.
      * 
      *   + `default` and [closure](https://github.com/google/closure-compiler/wiki) are implemented as builtin presets
@@ -102,6 +118,15 @@ interface IJSDocTagCompletionService {
      */
     projectHasPreset?: true;
     /**
+     * means run on vscode extension
+     * @date 2020/10/17
+     */
+    vscode?: true;
+    /**
+     * @date 2020/10/17
+     */
+    notifyToVscodeExtension(): void;
+    /**
      * #### apply plugin config
      * 
      * @param {ts.server.Project} project need a reference to the `ts.server.Project` because need to get the details of `tsconfig.json` by method `getCompilerOptions`
@@ -124,6 +149,13 @@ interface IJSDocTagCompletionService {
      * @param {string} [modulePathOrName] This string should be `default` or `closure` for builtin preset, or the module id of the preset module.
      */
     setPreset(modulePathOrName?: string): void;
+}
+/**
+ * @internal
+ */
+declare const enum EPluginMode {
+    StandAlone,
+    Global
 }
 /**
  * @date 2020/9/11
