@@ -56,7 +56,7 @@ then launch vscode, etc
 
     * #1 ts project (tsconfig.json etc)
 
-      * #1-2 vscode setting (WIP?: vscode extension)
+      + #1-2 vscode setting (vscode extension [vscode-typescript-jsdoctag-completions](https://marketplace.visualstudio.com/items?itemName=jeffy-g.vscode-typescript-jsdoctag-completions))
 
     * #2 OS native
 
