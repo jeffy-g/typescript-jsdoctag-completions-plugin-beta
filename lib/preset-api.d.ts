@@ -162,7 +162,7 @@ interface IJSDocTagPresetProvider extends ExcludePick<TJSDocTagRawPreset, "provi
      * 
      * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
      */
-    entries(isBlock?: true): TJSDocTagPresetEntry[];
+    entries(isBlock?: true): ReadonlyArray<TJSDocTagPresetEntry>;
     /**
      * If need cleanup, do it during this method call
      * 

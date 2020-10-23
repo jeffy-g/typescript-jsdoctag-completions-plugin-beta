@@ -27,7 +27,7 @@ type TJSDocTagCompionsPluginMessage = {
     closed?: true;
 };
 /**
- * 
+ * @enum {string | number}
  */
 declare const enum ECommunicationConstant {
     HOST = "127.0.0.1",
