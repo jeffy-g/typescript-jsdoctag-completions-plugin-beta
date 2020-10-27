@@ -4,6 +4,9 @@
 
 This plugin provides jsdoc tag completion and completion details. (with document of tag
 
+ + In the __Preset API__, by defining __documentation__ and __syntax__ for each `tag`,  
+   it will be displayed in the __completion detail__.
+
 > ## How to try?
 
 ```
