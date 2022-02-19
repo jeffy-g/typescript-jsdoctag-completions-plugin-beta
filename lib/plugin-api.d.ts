@@ -13,36 +13,36 @@ import * as ts from "typescript/lib/tsserverlibrary";
 type TJSDocTagCompletionsPluginConfig = {
     /**
      * This means the plugin config is the value defined on workspace settings in vscode.
-     * 
+     *
      * CAUTION: This value must not be set when config defined in tsconfig.json@compilerOptions/plugins!
-     * 
+     *
      * @date 2020/10/16
      */
     global?: true;
     /**
      * This means the plugin config is the value defined on workspace settings in vscode.
-     * 
+     *
      * CAUTION: This value must not be set when config defined in tsconfig.json@compilerOptions/plugins!
-     * 
+     *
      * @date 2020/9/5
      */
     vscode?: true;
     /**
      * Specify the jsdoc tag preset.
-     * 
+     *
      *   + `default` and [closure](https://github.com/google/closure-compiler/wiki) are implemented as builtin presets
-     * 
+     *
      *   + 🖌️ If you have your own defined preset, value its module id
-     * 
+     *
      * use `default` when omitted.
-     * 
+     *
      * @default "default"
      */
     preset?: "default" | "closure" | string;
     /**
      * Use if you need to set a locale that takes precedence over the native OS locale
-     * 
-     * Can specify other locales to force the use of locales.  
+     *
+     * Can specify other locales to force the use of locales.
      * If omitted, the project locale and system locale are applied in that order.
      */
     locale?: JSDocTagPresetAPI.TPresetLocaleTokens;
@@ -71,9 +71,9 @@ interface IJSDocTagCompletionService {
     locale: JSDocTagPresetAPI.TPresetLocaleTokens;
     /**
      * This value will be true if `locale` is set in the project's `compilerOptions`.
-     * 
+     *
      * otherwise, this setting is will be `undefined`
-     * 
+     *
      * ```jsonc
      * // (ts|js)config.json
      * {
@@ -82,17 +82,17 @@ interface IJSDocTagCompletionService {
      * //   ^^^^^^^^^^^^^^
      *   }
      * }
-     * 
+     *
      * ```
-     * 
+     *
      * @date 2020/8/26
      */
     projectHasLocale?: true;
     /**
      * This value will be `true` if the plugin config  is set to  `@compilerOptions/plugins` and a valid` preset` is set.
-     * 
+     *
      * otherwise, this setting is will be `undefined`
-     * 
+     *
      * ```jsonc
      * // tsconfig.json
      * {
@@ -128,12 +128,12 @@ interface IJSDocTagCompletionService {
     notifyToVscodeExtension(): void;
     /**
      * #### apply plugin config
-     * 
+     *
      * @param {ts.server.Project} project need a reference to the `ts.server.Project` because need to get the details of `tsconfig.json` by method `getCompilerOptions`
-     * @param {TJSDocTagCompletionsPluginConfig} config It may be a complete plugin config or a fragmented config.  
+     * @param {TJSDocTagCompletionsPluginConfig} config It may be a complete plugin config or a fragmented config.
      *     This could be the one set in tsconfig.json or the config transferred from the vscode extension
-     * @param {JSDocTagPresetAPI.TPresetLocaleTokens} [preferredLocale] Will be used if tsconfig.json does not have a locale set,  
-     *     or the config forwarded by the vscode extension does not have a locale set.  
+     * @param {JSDocTagPresetAPI.TPresetLocaleTokens} [preferredLocale] Will be used if tsconfig.json does not have a locale set,
+     *     or the config forwarded by the vscode extension does not have a locale set.
      *     default is `undefined`. (which means use native locale
      */
     update(
@@ -163,11 +163,18 @@ declare const enum EPluginMode {
 interface ITsServerLoggerUser {
     /**
      * Control enable/disable of logging with `logger` parameter
-     * 
+     *
      * @param {ts.server.Logger} [logger] will be disable logging when `logger` parameter is undefined
      */
     setLogger(logger?: ts.server.Logger): void;
+    /**
+     * @param text log to text string. output to tsserver log
+     */
     log(text: string): void;
+    /**
+     * `true` if a valid logger is set
+     */
+    isAvailable: boolean;
 }
 type TJSDocRuntimeCache = {
     getJSDocTagNameCompletions: () => ts.CompletionEntry[];
