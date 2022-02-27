@@ -149,6 +149,10 @@ interface IJSDocTagCompletionService {
      * @param {string} [modulePathOrName] This string should be `default` or `closure` for builtin preset, or the module id of the preset module.
      */
     setPreset(modulePathOrName?: string): void;
+    /**
+     * @date 2022/2/27
+     */
+    readonly currentPreset: string;
 }
 /**
  * @internal

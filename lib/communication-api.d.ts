@@ -5,6 +5,7 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
+/// <reference path="./preset-api.d.ts"/>
 /**
  * 
  */
@@ -21,6 +22,10 @@ type TJSDocTagCompionsPluginMessage = {
      * 
      */
     reload: number;
+    /**
+     * @date 2022/2/27
+     */
+    locale: JSDocTagPresetAPI.TPresetLocaleTokens;
     /**
      * 
      */
