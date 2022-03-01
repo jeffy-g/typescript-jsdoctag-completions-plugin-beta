@@ -13,10 +13,6 @@ declare global {
     type Writable<T> = {
         -readonly [P in keyof T]: T[P];
     };
-    /**
-     * pick properties by exclude list
-     */
-    type ExcludePick<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 }
 /**
  * locale syntax conforms to the typescript locale tokens
@@ -55,6 +51,7 @@ type TSynonymsMap = {
 /**
  * @date 2020/5/26
  * @version 1.0
+ * @version 1.1 added `snippet`
  */
 type TJSDocTagPresetEntry = {
     /**
@@ -76,6 +73,10 @@ type TJSDocTagPresetEntry = {
      * @default "en"
      */
     document(locale?: TPresetLocaleTokens): string | undefined;
+    /**
+     * @date 2022/3/1
+     */
+    readonly snippet?: string;
 };
 /**
  * ### About `marker`, `simple`, `complexity` property
@@ -150,7 +151,7 @@ type TJSDocTagRawPreset = {
  * @date 2020/8/30
  * @version 1.0
  */
-interface IJSDocTagPresetProvider extends ExcludePick<TJSDocTagRawPreset, "provideTagData"> {
+interface IJSDocTagPresetProvider extends Omit<TJSDocTagRawPreset, "provideTagData"> {
     /**
      * acquire available jsdoc tag names
      * 
