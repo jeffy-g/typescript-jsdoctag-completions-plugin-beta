@@ -180,10 +180,22 @@ interface ITsServerLoggerUser {
      */
     isAvailable: boolean;
 }
+/**
+ * @enum {number}
+ * @readonly
+ * @summary moved from jsdoc.ts
+ */
+ declare const enum CompletionDataKind {
+    /**
+     * note that value is zero (0)
+     */
+    JsDocTagName,
+    JsDocTag,
+    InlineJsDocTagName,
+    InlineJsDocTag,
+    ShiftInline = 2
+}
 type TJSDocRuntimeCache = {
-    getJSDocTagNameCompletions: () => ts.CompletionEntry[];
-    getInlineJSDocTagNameCompletions: () => ts.CompletionEntry[];
-    getJSDocTagCompletions: () => ts.CompletionEntry[];
-    getInlineJSDocTagCompletions: () => ts.CompletionEntry[];
+    getCompletionEntries: (kind: CompletionDataKind) => ts.CompletionEntry[];
 };
 export as namespace P;
