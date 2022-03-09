@@ -1,4 +1,5 @@
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/jeffy-g/typescript-jsdoctag-completions-plugin-beta.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jeffy-g/typescript-jsdoctag-completions-plugin-beta/context:javascript) ![GitHub](https://img.shields.io/github/license/jeffy-g/typescript-jsdoctag-completions-plugin-beta?style=plastic)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/jeffy-g/typescript-jsdoctag-completions-plugin-beta.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jeffy-g/typescript-jsdoctag-completions-plugin-beta/context:javascript)
+![GitHub](https://img.shields.io/github/license/jeffy-g/typescript-jsdoctag-completions-plugin-beta?style=plastic)
 
 # TypeScript JSDoc Tag Completions Plugin
 
