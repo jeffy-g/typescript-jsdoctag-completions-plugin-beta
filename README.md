@@ -1,4 +1,3 @@
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/jeffy-g/typescript-jsdoctag-completions-plugin-beta.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/jeffy-g/typescript-jsdoctag-completions-plugin-beta/context:javascript)
 ![GitHub](https://img.shields.io/github/license/jeffy-g/typescript-jsdoctag-completions-plugin-beta?style=plastic)
 
 # TypeScript JSDoc Tag Completions Plugin
@@ -22,15 +21,20 @@ next, configure plugin to `tsconfig.json`.
     "target": "es2019",
     "module": "esnext",
     "strict": true,
-    // plugin refers to the value of `@compilerOptions/locale`
-    // If not set, use the OS locale
-    "locale": "ja",
+    // In TypeScript 5.x, compilerOptions/locale was removed,
+    // so Moved locale to plugin settings.
+    // however, for older versions of ts,
+    // this value is still referenced as before from this plugin.
+    // "locale": "ja",
     "plugins": [
       {
         "name": "typescript-jsdoctag-completions-plugin",
         // Plugin specific configuration
         "preset": "closure", // builtin preset is "default" and "closure"
-        "verbose": true      // enable/disable plugin logging
+        "verbose": true,     // enable/disable plugin logging
+        // plugin refers to the value of `@compilerOptions/locale`
+        // If not set, use the OS locale
+        "locale": "ja"
       }
     ]
   }
@@ -54,7 +58,7 @@ then launch vscode, etc
     + To create your own preset, implement `TJSDocTagRawPreset` as defined in [preset-api.d.ts](https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L109)
 
 
-> ## `Locale` priority
+> ## <a name="locale-priority">`Locale` priority</a>
 
   + The priority to which the `locale` applies
 
