@@ -155,13 +155,6 @@ interface IJSDocTagCompletionService {
     readonly currentPreset: string;
 }
 /**
- * @internal
- */
-declare const enum EPluginMode {
-    StandAlone,
-    Global
-}
-/**
  * @date 2020/9/11
  */
 interface ITsServerLoggerUser {
@@ -180,22 +173,4 @@ interface ITsServerLoggerUser {
      */
     isAvailable: boolean;
 }
-/**
- * @enum {number}
- * @readonly
- * @summary moved from jsdoc.ts
- */
- declare const enum CompletionDataKind {
-    /**
-     * note that value is zero (0)
-     */
-    JsDocTagName,
-    JsDocTag,
-    InlineJsDocTagName,
-    InlineJsDocTag,
-    ShiftInline = 2
-}
-type TJSDocRuntimeCache = {
-    getCompletionEntries: (kind: CompletionDataKind) => ts.CompletionEntry[];
-};
 export as namespace P;

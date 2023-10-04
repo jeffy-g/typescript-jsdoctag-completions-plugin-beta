@@ -1,6 +1,6 @@
 {
   "name": "typescript-jsdoctag-completions-plugin",
-  "version": "1.5.1-beta",
+  "version": "1.6.0-beta",
   "description": "This plugin provides jsdoc tag completion and completion details. (with document of tag",
   "main": "./lib/index.js",
   "keywords": [
