@@ -30,9 +30,12 @@ next, configure plugin to `tsconfig.json`.
       {
         "name": "typescript-jsdoctag-completions-plugin",
         // Plugin specific configuration
-        "preset": "closure", // builtin preset is "default" and "closure"
+        // builtin preset is "default" and "closure".
+        // If you want to use a jsdoc tag preset that you have defined yourself based on the preset API,
+        // specify the path of that module.
+        "preset": "closure",
         "verbose": true,     // enable/disable plugin logging
-        // plugin refers to the value of `@compilerOptions/locale`
+        // plugin refers to the value of `@compilerOptions/plugins[@name=typescript-jsdoctag-completions-plugin]/locale`
         // If not set, use the OS locale
         "locale": "ja"
       }
@@ -41,7 +44,7 @@ next, configure plugin to `tsconfig.json`.
 }
 ```
 
-then launch vscode, etc
+then launch [Visula Studio Code](https://code.visualstudio.com/download), etc
 
 
 > ## About JSDoc Tag Preset
@@ -55,7 +58,7 @@ then launch vscode, etc
 
   * external defined preset
 
-    + To create your own preset, implement `TJSDocTagRawPreset` as defined in [preset-api.d.ts](https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L109)
+    + To create your own preset, implement `TJSDocTagRawPreset` as defined in [preset-api.d.ts](https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L110)
 
 
 > ## <a name="locale-priority">`Locale` priority</a>
