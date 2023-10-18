@@ -38,6 +38,9 @@ declare const enum ECommunicationConstant {
     HOST = "127.0.0.1",
     PORT = 55555
 }
-declare interface ICommunicationServerLogger {
+/**
+ * 
+ */
+declare interface ICommunicationClientLogger {
     log(text: string): void;
 }

@@ -29,4 +29,4 @@ export declare const fireProjectUpdateEvent: <T extends TJSDocTagCompionsPluginM
  * 
  * @date 2023-10-17
  */
-export declare const subscribeProjectEvent: <T extends TJSDocTagCompionsPluginMessage>(ondata: (message: T) => void, logger?: ICommunicationServerLogger) => void;
+export declare const subscribeProjectEvent: <T extends TJSDocTagCompionsPluginMessage>(ondata: (message: T) => void, logger?: ICommunicationClientLogger) => void;
