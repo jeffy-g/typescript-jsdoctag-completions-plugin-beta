@@ -6,5 +6,27 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /// <reference path="../communication-api.d.ts"/>
-export declare const launchMessageServer: <T extends TJSDocTagCompionsPluginMessage>(ondata: (message: T) => void, logger?: ICommunicationServerLogger) => void;
-export declare const sendMessage: <T extends TJSDocTagCompionsPluginMessage>(message: T) => void;
+/**
+ * Starts a server to notify project update events.
+ * 
+ * __CAUTION: DO NOT USE CLIENT PROGRAM SIDE!__
+ * 
+ * @internal
+ * @date 2023-10-17
+ */
+export declare const launchMessageServer: () => void;
+/**
+ * Notify listener that project has been updated
+ * 
+ * __CAUTION: DO NOT USE CLIENT PROGRAM SIDE!__
+ * 
+ * @internal
+ * @date 2023-10-17
+ */
+export declare const fireProjectUpdateEvent: <T extends TJSDocTagCompionsPluginMessage>(message: T) => void;
+/**
+ * The client side connects to the plugin side server and subscribes to project updates.
+ * 
+ * @date 2023-10-17
+ */
+export declare const subscribeProjectEvent: <T extends TJSDocTagCompionsPluginMessage>(ondata: (message: T) => void, logger?: ICommunicationServerLogger) => void;
