@@ -37,9 +37,10 @@ type TPresetLocaleTokens =
     | "zh-tw";
 /**
  * @date 2020/8/31
+ * @version 1.1 use template literal
  */
-type TTagKindToken = "block" | "inline";
-type TTranslationMap = Record<"blockDocs" | "inlineDocs", ts.MapLike<string>>;
+type TTagKindToken<Post extends string = ""> = `block${Post}` | `inline${Post}`;
+type TTranslationMap = Record<TTagKindToken<"Docs">, ts.MapLike<string>>;
 type TTranslationsMap = Record<TPresetLocaleTokens, TTranslationMap>;
 type TSyntaxMap = Record<TTagKindToken, ts.MapLike<string>>;
 /**
