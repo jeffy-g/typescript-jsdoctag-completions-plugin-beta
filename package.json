@@ -1,6 +1,6 @@
 {
   "name": "typescript-jsdoctag-completions-plugin",
-  "version": "2.0.2-beta",
+  "version": "2.0.3-beta",
   "description": "This plugin provides jsdoc tag completion and completion details. (with document of tag",
   "main": "./lib/index.js",
   "keywords": [
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:jeffy-g/typescript-jsdoctag-completions-plugin-beta.git"
+    "url": "git+ssh://git@github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta.git"
   },
   "bugs": {
     "url": "https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/issues"
