@@ -10,7 +10,7 @@ This plugin provides jsdoc tag completion and completion details. (with document
 > ## How to try?
 
 ```
-$ npm install --save-dev typescript typescript-jsdoctag-completions-plugin
+$ npm i --save-dev typescript typescript-jsdoctag-completions-plugin
 ```
 
 next, configure plugin to `tsconfig.json`.
@@ -70,6 +70,12 @@ then launch [Visula Studio Code](https://code.visualstudio.com/download), etc
       * #1-2 vscode setting (vscode extension [vscode-typescript-jsdoctag-completions](https://marketplace.visualstudio.com/items?itemName=jeffy-g.vscode-typescript-jsdoctag-completions))
 
     * #2 OS native
+
+> ## Usage Tips
+
+  + Set TypeScript Version in VSCode: Ensure that the TypeScript version in VSCode is set to the version installed in your project.
+
+  + Include Sources in tsconfig.json: The plugin only applies to sources specified in the "include" section of tsconfig.json.
 
 
 
