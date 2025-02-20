@@ -7,25 +7,25 @@
 */
 /// <reference path="../communication-api.d.ts"/>
 /**
- * Starts a server to notify project update events.
+ * Starts a server to notify about project update events.
  * 
- * __CAUTION: DO NOT USE CLIENT PROGRAM SIDE!__
+ * __CAUTION: DO NOT USE ON CLIENT SIDE!__
  * 
  * @internal
  * @date 2023-10-17
  */
 export declare const launchMessageServer: () => void;
 /**
- * Notify listener that project has been updated
+ * Notifies listeners that the project has been updated.
  * 
- * __CAUTION: DO NOT USE CLIENT PROGRAM SIDE!__
+ * __CAUTION: DO NOT USE ON CLIENT SIDE!__
  * 
  * @internal
  * @date 2023-10-17
  */
 export declare const fireProjectUpdateEvent: <T extends TJSDocTagCompionsPluginMessage>(message: T) => void;
 /**
- * The client side connects to the plugin side server and subscribes to project updates.
+ * The client side connects to the plugin server and subscribes to project updates.
  * 
  * @date 2023-10-17
  */

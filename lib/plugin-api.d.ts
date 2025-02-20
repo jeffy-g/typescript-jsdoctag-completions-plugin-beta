@@ -8,6 +8,8 @@
 /// <reference path="./preset-api.d.ts"/>
 import * as ts from "typescript/lib/tsserverlibrary";
 /**
+ * Configuration for the JSDoc Tag Completions Plugin.
+ * 
  * @date 2020/6/5
  */
 type TJSDocTagCompletionsPluginConfig = {
@@ -56,16 +58,22 @@ type TJSDocTagCompletionsPluginConfig = {
     betaMark?: string;
 };
 /**
+ * Information required to create the JSDoc Tag Completions Plugin.
+ * 
  * @date 2020/6/26
  */
 interface IJSDocTagCompletionsPluginCreateInfo extends ts.server.PluginCreateInfo {
     config: TJSDocTagCompletionsPluginConfig;
 }
 /**
+ * Service for JSDoc Tag Completions.
+ * 
  * @date 2020/8/30
  */
 interface IJSDocTagCompletionService {
     /**
+     * Locale token for the JSDoc Tag Preset.
+     * 
      * @date 2020/8/31
      */
     locale: JSDocTagPresetAPI.TPresetLocaleTokens;
@@ -118,23 +126,23 @@ interface IJSDocTagCompletionService {
      */
     projectHasPreset?: true;
     /**
-     * means run on vscode extension
+     * Indicates if the plugin is running on a VSCode extension.
+     * 
      * @date 2020/10/17
      */
     vscode?: true;
     /**
+     * Notify the VSCode extension.
+     * 
      * @date 2020/10/17
      */
     notifyToVscodeExtension(): void;
     /**
-     * #### apply plugin config
-     *
-     * @param {ts.server.Project} project need a reference to the `ts.server.Project` because need to get the details of `tsconfig.json` by method `getCompilerOptions`
-     * @param {TJSDocTagCompletionsPluginConfig} config It may be a complete plugin config or a fragmented config.
-     *     This could be the one set in tsconfig.json or the config transferred from the vscode extension
-     * @param {JSDocTagPresetAPI.TPresetLocaleTokens} [preferredLocale] Will be used if tsconfig.json does not have a locale set,
-     *     or the config forwarded by the vscode extension does not have a locale set.
-     *     default is `undefined`. (which means use native locale
+     * Apply plugin configuration.
+     * 
+     * @param {ts.server.Project} project Reference to the `ts.server.Project` to get details of `tsconfig.json` using `getCompilerOptions`.
+     * @param {TJSDocTagCompletionsPluginConfig} config Complete or fragmented plugin configuration.
+     * @param {JSDocTagPresetAPI.TPresetLocaleTokens} [preferredLocale] Used if `tsconfig.json` or VSCode extension config does not have a locale set. Defaults to `undefined` (uses native locale).
      */
     update(
         project: ts.server.Project,
@@ -142,34 +150,42 @@ interface IJSDocTagCompletionService {
         preferredLocale?: JSDocTagPresetAPI.TPresetLocaleTokens
     ): void;
     /**
-     * returns a `ts.LanguageService` instance
+     * Returns a `ts.LanguageService` instance.
      */
     getService(): ts.LanguageService;
     /**
-     * @param {string} [modulePathOrName] This string should be `default` or `closure` for builtin preset, or the module id of the preset module.
+     * Set the preset module.
+     * 
+     * @param {string} [modulePathOrName] `default` or `closure` for builtin presets, or the module id of the preset module.
      */
     setPreset(modulePathOrName?: string): void;
     /**
+     * Current preset module.
+     * 
      * @date 2022/2/27
      */
     readonly currentPreset: string;
 }
 /**
+ * Interface for using the TypeScript server logger.
+ * 
  * @date 2020/9/11
  */
 interface ITsServerLoggerUser {
     /**
-     * Control enable/disable of logging with `logger` parameter
-     *
-     * @param {ts.server.Logger} [logger] will be disable logging when `logger` parameter is undefined
+     * Enable or disable logging with the provided `logger`.
+     * 
+     * @param {ts.server.Logger} [logger] Disable logging if `logger` is undefined.
      */
     setLogger(logger?: ts.server.Logger): void;
     /**
-     * @param text log to text string. output to tsserver log
+     * Log a text string to the tsserver log.
+     * 
+     * @param text Text to log.
      */
     log(text: string): void;
     /**
-     * `true` if a valid logger is set
+     * Indicates if a valid logger is set.
      */
     isAvailable: boolean;
 }
