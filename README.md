@@ -2,18 +2,18 @@
 
 # TypeScript JSDoc Tag Completions Plugin
 
-This plugin provides jsdoc tag completion and completion details. (with document of tag
+This plugin provides JSDoc tag completions and displays detailed documentation for each tag.
 
- + In the __Preset API__, by defining __documentation__ and __syntax__ for each `tag`,  
-   it will be displayed in the __completion detail__.
+ + Using the __Preset API__, you can define __documentation__ and __syntax__ for each JSDoc `tag`.  
+   These definitions will appear in the __completion details__ shown by your editor.
 
-> ## How to try?
+> ## Installation & Quick Start
 
-```
+```bash
 $ npm i --save-dev typescript typescript-jsdoctag-completions-plugin
 ```
 
-next, configure plugin to `tsconfig.json`.
+Next, configure the plugin in your `tsconfig.json`:
 
 ```jsonc
 {
@@ -23,8 +23,8 @@ next, configure plugin to `tsconfig.json`.
     "strict": true,
     // In TypeScript 5.x, compilerOptions/locale was removed,
     // so Moved locale to plugin settings.
-    // however, for older versions of ts,
-    // this value is still referenced as before from this plugin.
+    // However, for older versions of TypeScript,
+    // this value is still read by the plugin as before.
     // "locale": "ja",
     "plugins": [
       {
@@ -44,41 +44,40 @@ next, configure plugin to `tsconfig.json`.
 }
 ```
 
-then launch [Visula Studio Code](https://code.visualstudio.com/download), etc
+Then launch [Visual Studio Code](https://code.visualstudio.com/download) or your preferred TypeScript editor.
 
+> ## About JSDoc Tag Presets
 
-> ## About JSDoc Tag Preset
+The plugin supports two types of presets:
 
-  * plugin builtin
+* Built-in presets:
 
-| Preset name | Details |
-|:---|:---|
-| default | [TypeScript](https://github.com/microsoft/TypeScript) builtin JSDoc Tags with [Inline JSDoc Tags](https://jsdoc.app/) |
-| closure | [Closure Compiler](https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler) JSDoc Tags |
+  | Preset name | Details                                              |
+  | :---------- | :--------------------------------------------------- |
+  | default     | TypeScript built-in JSDoc tags and Inline JSDoc tags |
+  | closure     | Closure Compiler JSDoc tags                          |
 
-  * external defined preset
+* Custom presets:
 
-    + To create your own preset, implement `TJSDocTagRawPreset` as defined in [preset-api.d.ts](https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L110)
+  To create your own preset, implement `TJSDocTagRawPreset` as defined in preset-api.d.ts:
 
+  [https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L110](https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L110)
 
-> ## <a name="locale-priority">`Locale` priority</a>
+> ## `Locale` Priority
 
-  + The priority to which the `locale` applies
+The priority for resolving the locale setting is:
 
-    * #1 ts project (tsconfig.json etc)
+1. Project configuration (tsconfig.json, etc.)
 
-      * #1-2 vscode setting (vscode extension [vscode-typescript-jsdoctag-completions](https://marketplace.visualstudio.com/items?itemName=jeffy-g.vscode-typescript-jsdoctag-completions))
-
-    * #2 OS native
+   * VSCode settings (vscode extension [vscode-typescript-jsdoctag-completions](https://marketplace.visualstudio.com/items?itemName=jeffy-g.vscode-typescript-jsdoctag-completions))
+2. OS locale
 
 > ## Usage Tips
 
-  + Set TypeScript Version in VSCode: Ensure that the TypeScript version in VSCode is set to the version installed in your project.
+* Set the TypeScript version in VSCode: ensure that the TypeScript version in VSCode is set to the version installed in your project.
+* Include your source files in tsconfig.json: The plugin only applies to files listed in the "include" section.
 
-  + Include Sources in tsconfig.json: The plugin only applies to sources specified in the "include" section of tsconfig.json.
+> ## License
 
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-
-> ### License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
