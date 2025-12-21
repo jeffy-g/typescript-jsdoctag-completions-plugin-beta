@@ -6,7 +6,7 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /// <reference path="./preset-api.d.ts"/>
-import * as ts from "typescript/lib/tsserverlibrary";
+import * as ts from "typescript";
 /**
  * Configuration for the JSDoc Tag Completions Plugin.
  * 

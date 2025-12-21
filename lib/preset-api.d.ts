@@ -5,7 +5,7 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-import * as ts from "typescript/lib/tsserverlibrary";
+import * as ts from "typescript";
 declare global {
     /**
      * Remove readonly
@@ -158,13 +158,13 @@ interface IJSDocTagPresetProvider extends Omit<TJSDocTagRawPreset, "provideTagDa
      * 
      * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
      */
-    tagNames(isBlock?: true): ReadonlyArray<string>;
+    tagNames(isBlock?: true): readonly string[];
     /**
      * acquire available jsdoc tag preset entries
      * 
      * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
      */
-    entries(isBlock?: true): ReadonlyArray<TJSDocTagPresetEntry>;
+    entries(isBlock?: true): readonly TJSDocTagPresetEntry[];
     /**
      * If need cleanup, do it during this method call
      * 
