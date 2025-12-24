@@ -7,12 +7,12 @@
 */
 import * as ts from "typescript";
 declare global {
-    /**
-     * Remove readonly
-     */
-    type Writable<T> = {
-        -readonly [P in keyof T]: T[P];
-    };
+  /**
+   * Remove readonly
+   */
+  type Writable<T> = {
+    -readonly [P in keyof T]: T[P];
+  };
 }
 /**
  * locale syntax conforms to the typescript locale tokens
@@ -21,20 +21,20 @@ declare global {
  * @version 1.0
  */
 type TPresetLocaleTokens =
-    | "en"
-    | "cs"
-    | "de"
-    | "es"
-    | "fr"
-    | "it"
-    | "ja"
-    | "ko"
-    | "pl"
-    | "pt-br"
-    | "ru"
-    | "tr"
-    | "zh-cn"
-    | "zh-tw";
+  | "en"
+  | "cs"
+  | "de"
+  | "es"
+  | "fr"
+  | "it"
+  | "ja"
+  | "ko"
+  | "pl"
+  | "pt-br"
+  | "ru"
+  | "tr"
+  | "zh-cn"
+  | "zh-tw";
 /**
  * @date 2020/8/31
  * @version 1.1 use template literal
@@ -47,7 +47,7 @@ type TSyntaxMap = Record<TTagKindToken, ts.MapLike<string>>;
  * @date 2020/8/29
  */
 type TSynonymsMap = {
-    [token in TTagKindToken]: ts.MapLike<string[]>;
+  [token in TTagKindToken]: ts.MapLike<string[]>;
 };
 /**
  * @date 2020/5/26
@@ -55,29 +55,29 @@ type TSynonymsMap = {
  * @version 1.1 added `snippet`
  */
 type TJSDocTagPresetEntry = {
-    /**
-     * JSDoc tag name such as abstract, access, param ...
-     */
-    readonly name: string;
-    /**
-     * synonyms of `name` property
-     */
-    readonly synonyms?: string[];
-    /**
-     * syntax string for `name`
-     * 
-     * e.g - "&#64;param [{&lt;type>}] &lt;name> &lt;description>"
-     */
-    readonly syntax?: string;
-    /**
-     * documentation of `name` property if presents
-     * @default "en"
-     */
-    document(locale?: TPresetLocaleTokens): string | undefined;
-    /**
-     * @date 2022/3/1
-     */
-    readonly snippet?: string;
+  /**
+   * JSDoc tag name such as abstract, access, param ...
+   */
+  readonly name: string;
+  /**
+   * synonyms of `name` property
+   */
+  readonly synonyms?: string[];
+  /**
+   * syntax string for `name`
+   * 
+   * e.g - "&#64;param [{&lt;type>}] &lt;name> &lt;description>"
+   */
+  readonly syntax?: string;
+  /**
+   * documentation of `name` property if presents
+   * @default "en"
+   */
+  document(locale?: TPresetLocaleTokens): string | undefined;
+  /**
+   * @date 2022/3/1
+   */
+  readonly snippet?: string;
 };
 /**
  * ### About `marker`, `simple`, `complexity` property
@@ -109,43 +109,43 @@ type TJSDocTagPresetEntry = {
  * @version 2.0 remove generics
  */
 type TJSDocTagRawPreset = {
-    /**
-     * provide marker tags
-     */
-    readonly marker: string | string[];
-    /**
-     * provide simple tags
-     */
-    readonly simple: string | string[];
-    /**
-     * provide complexity tags
-     */
-    readonly complexity: string | string[];
-    /**
-     * Returns the string if there is information, or an empty string otherwise
-     * 
-     * @param tagName
-     * @param isBlock
-     * @date 2020/9/5
-     */
-    getExtraInfo(tagName: string, isBlock?: true): string;
-    /**
-     * ### Provides jsdoc tag name data, which is the cornerstone of preset.
-     * 
-     * tag name data syntax:
-     * 
-     * ```js
-     * // block type
-     * const blockNames = [
-     *     "function:func,method",
-     *     "<base name>[:<synonym>[,<synonym>]]",
-     *     // ...
-     * ];
-     * ```
-     * 
-     * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
-     */
-    provideTagData(isBlock?: true): string[];
+  /**
+   * provide marker tags
+   */
+  readonly marker: string | string[];
+  /**
+   * provide simple tags
+   */
+  readonly simple: string | string[];
+  /**
+   * provide complexity tags
+   */
+  readonly complexity: string | string[];
+  /**
+   * Returns the string if there is information, or an empty string otherwise
+   * 
+   * @param tagName
+   * @param isBlock
+   * @date 2020/9/5
+   */
+  getExtraInfo(tagName: string, isBlock?: true): string;
+  /**
+   * ### Provides jsdoc tag name data, which is the cornerstone of preset.
+   * 
+   * tag name data syntax:
+   * 
+   * ```js
+   * // block type
+   * const blockNames = [
+   *     "function:func,method",
+   *     "<base name>[:<synonym>[,<synonym>]]",
+   *     // ...
+   * ];
+   * ```
+   * 
+   * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
+   */
+  provideTagData(isBlock?: true): string[];
 };
 /**
  * @interface
@@ -153,24 +153,24 @@ type TJSDocTagRawPreset = {
  * @version 1.0
  */
 interface IJSDocTagPresetProvider extends Omit<TJSDocTagRawPreset, "provideTagData"> {
-    /**
-     * acquire available jsdoc tag names
-     * 
-     * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
-     */
-    tagNames(isBlock?: true): readonly string[];
-    /**
-     * acquire available jsdoc tag preset entries
-     * 
-     * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
-     */
-    entries(isBlock?: true): readonly TJSDocTagPresetEntry[];
-    /**
-     * If need cleanup, do it during this method call
-     * 
-     * @todo this method is experimental
-     */
-    dispose(): void;
+  /**
+   * acquire available jsdoc tag names
+   * 
+   * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
+   */
+  tagNames(isBlock?: true): readonly string[];
+  /**
+   * acquire available jsdoc tag preset entries
+   * 
+   * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
+   */
+  entries(isBlock?: true): readonly TJSDocTagPresetEntry[];
+  /**
+   * If need cleanup, do it during this method call
+   * 
+   * @todo this method is experimental
+   */
+  dispose(): void;
 }
 /**
  * Entry signature of Preset module
@@ -178,12 +178,12 @@ interface IJSDocTagPresetProvider extends Omit<TJSDocTagRawPreset, "provideTagDa
  * @date 2020/8/30
  */
 interface IJSDocTagPresetFactory {
-    (): IJSDocTagPresetProvider;
+  (): IJSDocTagPresetProvider;
 }
 /**
  * @date 2020/9/11
  */
 interface IPresetFactoryComposer {
-    (rawPreset: TJSDocTagRawPreset, translations: TTranslationsMap, syntaxes: TSyntaxMap): IJSDocTagPresetFactory;
+  (rawPreset: TJSDocTagRawPreset, translations: TTranslationsMap, syntaxes: TSyntaxMap): IJSDocTagPresetFactory;
 }
 export as namespace JSDocTagPresetAPI;
