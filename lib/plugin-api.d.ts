@@ -148,7 +148,7 @@ interface IJSDocTagCompletionService {
     project: ts.server.Project,
     config: TJSDocTagCompletionsPluginConfig,
     preferredLocale?: JSDocTagPresetAPI.TPresetLocaleTokens
-  ): void;
+  ): Promise<void>;
   /**
    * Returns a `ts.LanguageService` instance.
    */
@@ -158,7 +158,7 @@ interface IJSDocTagCompletionService {
    * 
    * @param {string} [modulePathOrName] `default` or `closure` for builtin presets, or the module id of the preset module.
    */
-  setPreset(modulePathOrName?: string): void;
+  setPreset(modulePathOrName?: string): Promise<void>;
   /**
    * Current preset module.
    * 

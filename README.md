@@ -1,19 +1,67 @@
 ![GitHub](https://img.shields.io/github/license/jeffy-g/typescript-jsdoctag-completions-plugin-beta?style=plastic)
+![NPM Version](https://img.shields.io/npm/v/typescript-jsdoctag-completions-plugin?style=plastic&color=green)
+![npm bundle size](https://img.shields.io/bundlephobia/min/typescript-jsdoctag-completions-plugin?style=plastic)
+![NPM Downloads](https://img.shields.io/npm/dm/typescript-jsdoctag-completions-plugin?style=plastic)
+
 
 # TypeScript JSDoc Tag Completions Plugin
 
-This plugin provides JSDoc tag completions and displays detailed documentation for each tag.
+This plugin provides JSDoc tag completion and detailed documentation for each tag.
 
- + Using the __Preset API__, you can define __documentation__ and __syntax__ for each JSDoc `tag`.  
-   These definitions will appear in the __completion details__ shown by your editor.
++ In the __Preset API__, define __documentation__ and __syntax__ for each `tag`  
+  to display detailed information in the completion UI.
 
-> ## Installation & Quick Start
+## Features
 
-```bash
-$ npm i --save-dev typescript typescript-jsdoctag-completions-plugin
++ JSDoc tag completion with syntax-aware suggestions
++ Completion details for tag documentation, syntax, and aliases
++ Hover details for JSDoc tags (Quick Info); see the animation below
++ Locale-aware documentation output
++ Preset-based tag definitions (`default`, `closure`, or custom)
+
+## Requirements
+
++ Works with the TypeScript Language Service (e.g. VSCode)
++ Applies to TypeScript sources (`.ts`, `.tsx`, `.mts`, `.cts`)
+
+## This plugin follows standard JSDoc syntax and provides completions.
+
++ JSDoc blocks start with `/**`.
++ Each JSDoc line starts with `/\s+\*?\s/`.
++ JSDoc tags can be grouped into `marker`, `simple`, and `complex`.
+  + `Marker` tags have no body.
+  + `Simple` tags consist of a tag and a body (inline tags such as `@link`).
+  + `Complex` tags consist of a tag, an optional type annotation, and a body (inline tags such as `@link`).
+
+## Behavior
+
++ Hovering a JSDoc tag displays its details.
+
+![mouse-hover](https://github.com/user-attachments/assets/75974c89-29fd-407a-beb7-cf8eee139677)
+
+> NOTE: When completion is triggered, the same details are shown in Quick Info.
+
+## Installation
+
+```
+$ npm install --save-dev typescript typescript-jsdoctag-completions-plugin
 ```
 
-Next, configure the plugin in your `tsconfig.json`:
+Configure the plugin in `tsconfig.json`.
+
+Minimal configuration:
+
+```jsonc
+{
+  "compilerOptions": {
+    "plugins": [
+      { "name": "typescript-jsdoctag-completions-plugin" }
+    ]
+  }
+}
+```
+
+Custom preset configuration:
 
 ```jsonc
 {
@@ -23,8 +71,8 @@ Next, configure the plugin in your `tsconfig.json`:
     "strict": true,
     // In TypeScript 5.x, compilerOptions/locale was removed,
     // so Moved locale to plugin settings.
-    // However, for older versions of TypeScript,
-    // this value is still read by the plugin as before.
+    // however, for older versions of ts,
+    // this value is still referenced as before from this plugin.
     // "locale": "ja",
     "plugins": [
       {
@@ -36,6 +84,7 @@ Next, configure the plugin in your `tsconfig.json`:
         "preset": "closure",
         "verbose": true,     // enable/disable plugin logging
         // plugin refers to the value of `@compilerOptions/plugins[@name=typescript-jsdoctag-completions-plugin]/locale`
+        // *Changing this value will immediately change the translation language.*
         // If not set, use the OS locale
         "locale": "ja"
       }
@@ -44,40 +93,48 @@ Next, configure the plugin in your `tsconfig.json`:
 }
 ```
 
-Then launch [Visual Studio Code](https://code.visualstudio.com/download) or your preferred TypeScript editor.
+Launch [Visual Studio Code](https://code.visualstudio.com/download) (or another supported editor).
 
-> ## About JSDoc Tag Presets
+## Configuration Notes
 
-The plugin supports two types of presets:
++ `verbose`: Enable plugin logging (`true` or `false`).
++ `locale`: Overrides documentation language (falls back to OS locale when omitted).
++ `preset`: Use `default`, `closure`, or a custom preset module path.
 
-* Built-in presets:
 
-  | Preset name | Details                                              |
-  | :---------- | :--------------------------------------------------- |
-  | default     | TypeScript built-in JSDoc tags and Inline JSDoc tags |
-  | closure     | Closure Compiler JSDoc tags                          |
+## JSDoc Tag Presets
 
-* Custom presets:
+  * Built-in presets
 
-  To create your own preset, implement `TJSDocTagRawPreset` as defined in preset-api.d.ts:
+| Preset name | Details |
+|:---|:---|
+| default | [TypeScript](https://github.com/microsoft/TypeScript) builtin JSDoc Tags with [Inline JSDoc Tags](https://jsdoc.app/) |
+| closure | [Closure Compiler](https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler) JSDoc Tags |
 
-  [https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L110](https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L110)
+  * Custom presets
 
-> ## `Locale` Priority
+    + To create your own preset, implement `TJSDocTagRawPreset` as defined in [preset-api.d.ts](https://github.com/jeffy-g/typescript-jsdoctag-completions-plugin-beta/blob/master/lib/preset-api.d.ts#L110).
 
-The priority for resolving the locale setting is:
 
-1. Project configuration (tsconfig.json, etc.)
+## <a name="locale-priority">`Locale` priority</a>
 
-   * VSCode settings (vscode extension [vscode-typescript-jsdoctag-completions](https://marketplace.visualstudio.com/items?itemName=jeffy-g.vscode-typescript-jsdoctag-completions))
-2. OS locale
+  + Locale resolution priority
 
-> ## Usage Tips
+    * #1 ts project (tsconfig.json, etc)
 
-* Set the TypeScript version in VSCode: ensure that the TypeScript version in VSCode is set to the version installed in your project.
-* Include your source files in tsconfig.json: The plugin only applies to files listed in the "include" section.
+      * #1-2 vscode setting (vscode extension [vscode-typescript-jsdoctag-completions](https://marketplace.visualstudio.com/items?itemName=jeffy-g.vscode-typescript-jsdoctag-completions))
 
-> ## License
+    * #2 OS native
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+## Usage Notes
 
+  + Set the TypeScript version in VSCode: Ensure the version in VSCode matches the version installed in your project.
+
+  + Include sources in tsconfig.json: The plugin only applies to sources specified in the "include" section of tsconfig.json.
+
+If completions do not appear, verify the workspace TypeScript version and that the file is included in tsconfig.
+
+
+### License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.

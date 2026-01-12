@@ -146,6 +146,15 @@ type TJSDocTagRawPreset = {
    * @param isBlock `true` if need block type, when inline should pass `undefined`(or omit paramter) not `false`.
    */
   provideTagData(isBlock?: true): string[];
+  /**
+   * new feature __`tagType info`__
+   * 
+   * This method returns the value of the **tagName** parameter, classifying it as `markerTag`, `simpleTag`, `complexityTag`, or `inlineTag`.
+   * 
+   * @param tagName 
+   * @data 2026-01-09
+   */
+  getTagTypeInfo(tagName: string): string;
 };
 /**
  * @interface
