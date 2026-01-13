@@ -37,7 +37,7 @@ This plugin provides JSDoc tag completion and detailed documentation for each ta
 
 + Hovering a JSDoc tag displays its details.
 
-![mouse-hover](https://github.com/user-attachments/assets/75974c89-29fd-407a-beb7-cf8eee139677)
+![mouse-hover](https://cdn.jsdelivr.net/gh/jeffy-g/typescript-jsdoctag-completions-plugin-beta@master/assets/mouse-hover.gif)
 
 > NOTE: When completion is triggered, the same details are shown in Quick Info.
 
