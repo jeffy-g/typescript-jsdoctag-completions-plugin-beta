@@ -15,6 +15,12 @@ type TJSDocTagCompionsPluginMessage = {
    */
   projectName: string;
   /**
+   * The project name relative to package.json, i.e., the workspace root.
+   * 
+   * @date 2026/1/14
+   */
+  shortName: string;
+  /**
    * The timestamp of the message.
    */
   timeStamp: number;
