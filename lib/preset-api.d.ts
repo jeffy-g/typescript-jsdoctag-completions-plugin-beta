@@ -42,7 +42,9 @@ type TPresetLocaleTokens =
 type TTagKindToken<Post extends string = ""> = `block${Post}` | `inline${Post}`;
 type TTranslationMap = Record<TTagKindToken<"Docs">, ts.MapLike<string>>;
 type TTranslationsMap = Record<TPresetLocaleTokens, TTranslationMap>;
-type TSyntaxMap = Record<TTagKindToken, ts.MapLike<string>>;
+type TPurgeSubjectStource<S extends string = ""> = Record<JSDocTagPresetAPI.TTagKindToken<S>, Record<string, string>>;
+type TPresetDataMap = Record<TTagKindToken, ts.MapLike<string>>;
+type TSyntaxMap = TPresetDataMap;
 /**
  * @date 2020/8/29
  */
@@ -193,6 +195,6 @@ interface IJSDocTagPresetFactory {
  * @date 2020/9/11
  */
 interface IPresetFactoryComposer {
-  (rawPreset: TJSDocTagRawPreset, translations: TTranslationsMap, syntaxes: TSyntaxMap): IJSDocTagPresetFactory;
+  (rawPreset: TJSDocTagRawPreset, translations: TTranslationsMap, syntaxes: TSyntaxMap, jsdocSnippetMap?: TPresetDataMap): IJSDocTagPresetFactory;
 }
 export as namespace JSDocTagPresetAPI;

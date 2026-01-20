@@ -19,10 +19,11 @@ This plugin provides JSDoc tag completion and detailed documentation for each ta
 + Locale-aware documentation output
 + Preset-based tag definitions (`default`, `closure`, or custom)
 
-## Requirements
+## **Requirements**
 
-+ Works with the TypeScript Language Service (e.g. VSCode)
-+ Applies to TypeScript sources (`.ts`, `.tsx`, `.mts`, `.cts`)
+ + Works with the TypeScript Language Service (tsserver) (e.g. VS Code)
+ + Applies to files handled by tsserver: TypeScript (`.ts`, `.tsx`, `.mts`, `.cts`, …) and JavaScript (`.js`, `.jsx`, `.mjs`, `.cjs`)
+ + Note: VS Code `files.associations` changes the editor’s language mode, but does not guarantee tsserver support for non-standard extensions.
 
 ## This plugin follows standard JSDoc syntax and provides completions.
 

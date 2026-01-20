@@ -23,7 +23,7 @@ export declare const launchMessageServer: () => void;
  * @internal
  * @date 2023-10-17
  */
-export declare const fireProjectUpdateEvent: <T extends TJSDocTagCompionsPluginMessage>(message: T) => void;
+export declare const fireProjectUpdateEvent: <T extends TJSDocTagCompionsPluginMessage>(message?: T) => void;
 /**
  * The client side connects to the plugin server and subscribes to project updates.
  * 

@@ -53,6 +53,14 @@ type TJSDocTagCompletionsPluginConfig = {
    */
   verbose?: boolean;
   /**
+   * This modifies typescript's `quickinfo`, which may cause problems.
+   * 
+   * + If problem happens, disable it by setting this option to `false`.
+   * 
+   * @date 2026/1/18
+   */
+  enableQuickInfo?: boolean;
+  /**
    * @deprecated this option is debug use (in beta version
    */
   betaMark?: string;
