@@ -55,11 +55,21 @@ type TJSDocTagCompletionsPluginConfig = {
   /**
    * This modifies typescript's `quickinfo`, which may cause problems.
    * 
-   * + If problem happens, disable it by setting this option to `false`.
+   * + If problem happens, disable it by setting this option to `true`.
+   * 
+   * @default false
    * 
    * @date 2026/1/18
    */
-  enableQuickInfo?: boolean;
+  disableQuickInfo?: boolean;
+  /**
+   * Disable dedenting of quickinfo type details (4-space to 2-space).
+   *
+   * @default false
+   *
+   * @date 2026/1/21
+   */
+  disableTypeDedentInQuickInfo?: boolean;
   /**
    * @deprecated this option is debug use (in beta version
    */

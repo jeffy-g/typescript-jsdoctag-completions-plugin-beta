@@ -87,7 +87,18 @@ Custom preset configuration:
         // plugin refers to the value of `@compilerOptions/plugins[@name=typescript-jsdoctag-completions-plugin]/locale`
         // *Changing this value will immediately change the translation language.*
         // If not set, use the OS locale
-        "locale": "ja"
+        "locale": "ja",
+
+        // 2026/1/18 1:40:29
+        /**
+         * since 2.1.8-beta
+         */
+        "disableQuickInfo": true,
+        // 2026/1/21 14:20:24
+        /**
+         * since 2.1.9-beta
+         */
+        "disableTypeDedentInQuickInfo": true,
       }
     ]
   }
@@ -101,6 +112,8 @@ Launch [Visual Studio Code](https://code.visualstudio.com/download) (or another 
 + `verbose`: Enable plugin logging (`true` or `false`).
 + `locale`: Overrides documentation language (falls back to OS locale when omitted).
 + `preset`: Use `default`, `closure`, or a custom preset module path.
++ `disableQuickInfo`: Disable Quick Info augmentation by this plugin (default: `false`).
++ `disableTypeDedentInQuickInfo`: Disable dedenting of Quick Info type details from 4 spaces to 2 spaces (default: `false`).
 
 
 ## JSDoc Tag Presets

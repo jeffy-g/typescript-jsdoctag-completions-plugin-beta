@@ -5,15 +5,8 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
+/// <reference types="./global.d.ts"/>
 import * as ts from "typescript";
-declare global {
-  /**
-   * Remove readonly
-   */
-  type Writable<T> = {
-    -readonly [P in keyof T]: T[P];
-  };
-}
 /**
  * locale syntax conforms to the typescript locale tokens
  * 
@@ -75,7 +68,7 @@ type TJSDocTagPresetEntry = {
    * documentation of `name` property if presents
    * @default "en"
    */
-  document(locale?: TPresetLocaleTokens): string | undefined;
+  document(locale?: TPresetLocaleTokens): TBD<string>;
   /**
    * @date 2022/3/1
    */
